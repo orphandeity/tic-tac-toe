@@ -155,10 +155,17 @@ export default function TicTacToe() {
     case GAME_STATES.notStarted:
     default:
       return (
-        <div>
-          <div>
-            <p>Select difficulty</p>
-            <select onChange={changeMode} value={mode}>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="mode" className="text-sm font-semibold">
+              Select difficulty
+            </label>
+            <select
+              id="mode"
+              onChange={changeMode}
+              value={mode}
+              className="cursor-pointer border-black"
+            >
               {Object.keys(GAME_MODES).map((key) => {
                 const gameMode = GAME_MODES[key];
                 return (
@@ -169,12 +176,22 @@ export default function TicTacToe() {
               })}
             </select>
           </div>
-          <div>
-            <p>Choose your player</p>
-            <menu className="flex gap-4">
-              <button onClick={() => choosePlayer(PLAYER_X)}>X</button>
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold">Choose your player</p>
+            <menu className="flex items-center gap-4">
+              <button
+                onClick={() => choosePlayer(PLAYER_X)}
+                className="border border-black px-4 py-2"
+              >
+                X
+              </button>
               <p>or</p>
-              <button onClick={() => choosePlayer(PLAYER_O)}>O</button>
+              <button
+                onClick={() => choosePlayer(PLAYER_O)}
+                className="border border-black px-4 py-2"
+              >
+                O
+              </button>
             </menu>
           </div>
         </div>
@@ -189,7 +206,7 @@ export default function TicTacToe() {
               <div
                 key={index}
                 onClick={() => humanMove(index)}
-                className="grid h-16 w-16 cursor-pointer place-content-center border"
+                className="grid h-16 w-16 cursor-pointer place-content-center border border-black text-xl font-bold"
               >
                 {isActive && <span>{value === PLAYER_X ? "X" : "O"}</span>}
               </div>
@@ -199,9 +216,14 @@ export default function TicTacToe() {
       );
     case GAME_STATES.over:
       return (
-        <div>
-          <p>{winner}</p>
-          <button onClick={startNewGame}>New Game</button>
+        <div className="flex flex-col justify-center gap-2">
+          <p className="text-xl font-bold">{winner}</p>
+          <button
+            onClick={startNewGame}
+            className="border border-black px-4 py-2"
+          >
+            New Game
+          </button>
         </div>
       );
   }

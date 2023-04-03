@@ -12,6 +12,7 @@ import { getRandomInt, switchPlayer } from "../lib/utils";
 import Board from "../lib/board";
 import { minimax } from "../lib/minimax";
 import PlayerSelect from "./PlayerSelect";
+import GameBoard from "./GameBoard";
 
 // declare default array for grid
 // outside of component so it doesn't get re-created on re-render
@@ -164,21 +165,12 @@ export default function TicTacToe() {
       );
     case GAME_STATES.inProgress:
       return (
-        <div className="grid grid-cols-3 gap-4">
-          {grid.map((value, index) => {
-            const isActive = value !== null;
-
-            return (
-              <div
-                key={index}
-                onClick={() => humanMove(index)}
-                className="grid h-16 w-16 cursor-pointer place-content-center border border-black text-xl font-bold"
-              >
-                {isActive && <span>{value === PLAYER_X ? "X" : "O"}</span>}
-              </div>
-            );
-          })}
-        </div>
+        <GameBoard
+          grid={grid}
+          humanMove={humanMove}
+          nextMove={nextMove}
+          players={players}
+        />
       );
     case GAME_STATES.over:
       return (

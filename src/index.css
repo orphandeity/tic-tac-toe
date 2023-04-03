@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.headingLg {
+  @apply text-headingLg font-bold tracking-headingLg;
+}
+
+.headingMd {
+  @apply text-headingMd font-bold tracking-headingMd;
+}
+
+.headingSm {
+  @apply text-headingSm font-bold tracking-headingSm;
+}
+
+.headingXs {
+  @apply text-headingXs font-bold tracking-headingXs;
+}
+
+.body {
+  @apply text-body font-medium tracking-body;
+}

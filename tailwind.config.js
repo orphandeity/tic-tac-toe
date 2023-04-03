@@ -2,9 +2,13 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["/index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      borderRadius: {
+        small: "10px",
+        large: "15px",
+      },
       colors: {
         _darkNavy: "#1A2A33",
         _darkNavySemi: "#1F3641",

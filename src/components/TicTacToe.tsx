@@ -11,6 +11,7 @@ import {
 import { getRandomInt, switchPlayer } from "../lib/utils";
 import Board from "../lib/board";
 import { minimax } from "../lib/minimax";
+import PlayerSelect from "./PlayerSelect";
 
 // declare default array for grid
 // outside of component so it doesn't get re-created on re-render
@@ -155,46 +156,11 @@ export default function TicTacToe() {
     case GAME_STATES.notStarted:
     default:
       return (
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="mode" className="text-sm font-semibold">
-              Select difficulty
-            </label>
-            <select
-              id="mode"
-              onChange={changeMode}
-              value={mode}
-              className="cursor-pointer border-black"
-            >
-              {Object.keys(GAME_MODES).map((key) => {
-                const gameMode = GAME_MODES[key];
-                return (
-                  <option key={gameMode} value={gameMode}>
-                    {key}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold">Choose your player</p>
-            <menu className="flex items-center gap-4">
-              <button
-                onClick={() => choosePlayer(PLAYER_X)}
-                className="border border-black px-4 py-2"
-              >
-                X
-              </button>
-              <p>or</p>
-              <button
-                onClick={() => choosePlayer(PLAYER_O)}
-                className="border border-black px-4 py-2"
-              >
-                O
-              </button>
-            </menu>
-          </div>
-        </div>
+        <PlayerSelect
+          players={players}
+          setPlayers={setPlayers}
+          choosePlayer={choosePlayer}
+        />
       );
     case GAME_STATES.inProgress:
       return (

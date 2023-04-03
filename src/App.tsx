@@ -1,4 +1,5 @@
 import TicTacToe from "./components/TicTacToe";
+import { Button } from "./components/ui/Button";
 
 function App() {
   return (

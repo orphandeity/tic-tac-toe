@@ -1,11 +1,9 @@
 import { DIMENSIONS, DRAW } from "./constants";
 
-type Grid = Array<null | number>;
-
 export default class Board {
-  grid: Grid;
+  grid: GridType;
 
-  constructor(grid?: Grid) {
+  constructor(grid?: GridType) {
     this.grid = grid || new Array(DIMENSIONS ** 2).fill(null);
   }
 
@@ -18,10 +16,12 @@ export default class Board {
     return squares;
   };
 
+  // Check if all squares are empty
   isEmpty = (grid = this.grid) => {
     return this.getEmptySquares(grid).length === DIMENSIONS ** 2;
   };
 
+  // Check for winner and return it -or null if empty squares remain
   getWinner = (grid = this.grid) => {
     const winningCombos = [
       [0, 1, 2],
@@ -33,7 +33,7 @@ export default class Board {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    let res: number | null = null;
+    let res: SquareType = null;
     winningCombos.forEach((el, i) => {
       if (
         grid[el[0]] !== null &&
@@ -48,12 +48,14 @@ export default class Board {
     return res;
   };
 
+  // Update square with player's value
   makeMove = (square: number, player: number) => {
     if (this.grid[square] === null) {
       this.grid[square] = player;
     }
   };
 
+  // Create a copy of the game board
   clone = () => {
     return new Board(this.grid.concat());
   };

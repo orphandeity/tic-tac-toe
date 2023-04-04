@@ -13,8 +13,8 @@ const buttonVariants = cva(
         silver: "bg-_silver hover:bg-_silverHover",
       },
       size: {
-        sm: "headingXs py-4 px-4 rounded-[10px] w-fit",
-        lg: "headingSm py-5 rounded-[15px] w-full",
+        sm: "headingXs py-4 px-4 rounded-small w-fit",
+        lg: "headingSm py-5 rounded-large w-full",
       },
     },
     defaultVariants: {

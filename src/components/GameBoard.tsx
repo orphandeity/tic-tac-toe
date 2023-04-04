@@ -3,13 +3,20 @@ import { IconLogo, IconO, IconRestart, IconX } from "../lib/icons";
 import { Button } from "./ui/Button";
 
 interface GameBoardProps {
-  grid: any[];
+  grid: SquareType[];
   humanMove: (index: number) => void;
   nextMove: number | null;
   players: Record<string, number | null>;
+  startNewGame: () => void;
 }
 
-const GameBoard = ({ grid, humanMove, nextMove, players }: GameBoardProps) => {
+const GameBoard = ({
+  grid,
+  humanMove,
+  nextMove,
+  players,
+  startNewGame,
+}: GameBoardProps) => {
   return (
     <div className="grid grid-cols-3 gap-5">
       <div className="flex items-center justify-start">
@@ -24,7 +31,7 @@ const GameBoard = ({ grid, humanMove, nextMove, players }: GameBoardProps) => {
       </div>
       <div className="flex items-center justify-end">
         <div className="relative">
-          <Button variant={"silver"} size={"sm"}>
+          <Button variant={"silver"} size={"sm"} onClick={startNewGame}>
             <IconRestart />
           </Button>
           <div className="absolute inset-0 -z-10 translate-y-1 rounded-small bg-[#6B8998]" />
@@ -34,9 +41,8 @@ const GameBoard = ({ grid, humanMove, nextMove, players }: GameBoardProps) => {
         const isActive = value !== null;
 
         return (
-          <div className="relative">
+          <div key={index} className="relative">
             <div
-              key={index}
               onClick={() => humanMove(index)}
               className="grid h-[140px] w-[140px] cursor-pointer place-content-center rounded-large bg-_darkNavySemi"
             >

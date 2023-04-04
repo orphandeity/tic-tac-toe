@@ -62,9 +62,12 @@ const PlayerSelect = ({
           </Switch.Root>
           <p className="body uppercase text-_silver">remember: x goes first</p>
         </div>
-        <div className="absolute inset-0 -z-10 translate-y-2 rounded-small bg-[#10202A]" />
+        <div className="absolute inset-0 -z-10 translate-y-2 rounded-large bg-[#10202A]" />
       </div>
-      <Button onClick={() => choosePlayer(mark)}>new game (vs cpu)</Button>
+      <div className="relative w-full">
+        <Button onClick={() => choosePlayer(mark)}>new game (vs cpu)</Button>
+        <div className="absolute inset-0 -z-10 translate-y-2 rounded-large bg-[#CB8B14]" />
+      </div>
     </div>
   );
 };

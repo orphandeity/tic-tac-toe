@@ -1,3 +1,5 @@
 /// <reference types="vite/client" />
 
-type SquareType = "X" | "O" | null;
+type SquareType = number | null;
+
+type GridType = Array<SquareType>;

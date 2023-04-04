@@ -14,29 +14,39 @@ import { minimax } from "../lib/minimax";
 import PlayerSelect from "./PlayerSelect";
 import GameBoard from "./GameBoard";
 
-// declare default array for grid
-// outside of component so it doesn't get re-created on re-render
-const emptyGrid = new Array(DIMENSIONS ** 2).fill(null);
+// These values are declared outside of component
+// so they don't get re-created on each re-render
 
+// default array for grid
+const emptyGrid: SquareType[] = new Array(DIMENSIONS ** 2).fill(null);
+
+// Board class
+// contains methods for determining current state of game board (e.g. empty squares, winner)
 const board = new Board();
 
 export default function TicTacToe() {
-  // initialize game board
-  const [grid, setGrid] = useState(emptyGrid);
+  // game board squares
+  const [grid, setGrid] = useState<SquareType[]>(emptyGrid);
 
+  // human & ai player values
   const [players, setPlayers] = useState<Record<string, number | null>>({
     human: null,
     ai: null,
   });
 
+  // current state of game (not started, playing, over)
   const [gameState, setGameState] = useState(GAME_STATES.notStarted);
 
+  // whose turn is it?
   const [nextMove, setNextMove] = useState<number | null>(null);
 
+  // who won?
   const [winner, setWinner] = useState<string | null>(null);
 
+  // difficulty
   const [mode, setMode] = useState(GAME_MODES.medium);
 
+  // update grid state with new move
   const move = useCallback(
     (index: number, player: number | null) => {
       if (player && gameState === GAME_STATES.inProgress) {
@@ -50,10 +60,6 @@ export default function TicTacToe() {
     [gameState]
   );
 
-  /**
-   * Make the AI move. If it's the first move (the board is empty),
-   * make the move at any random cell to skip unnecessary Minimax calculations
-   */
   const aiMove = useCallback(() => {
     // important to pass a COPY of the grid here
     const board = new Board(grid.concat());
@@ -67,7 +73,7 @@ export default function TicTacToe() {
         break;
       // Medium level is half minimax and half random
       case GAME_MODES.medium:
-        const smartMove = !board.isEmpty(grid) && Math.random() < 0.5;
+        const smartMove = !board.isEmpty(grid) && Math.random() < 0.6;
         if (smartMove) {
           index = minimax(board, players.ai!)[1];
         } else {
@@ -96,13 +102,13 @@ export default function TicTacToe() {
   };
 
   const humanMove = (index: number) => {
-    console.log(index);
     if (!grid[index] && nextMove === players.human) {
       move(index, players.human);
       setNextMove(players.ai);
     }
   };
 
+  // make ai player's move when nextMove gets updated
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
     if (
@@ -118,6 +124,7 @@ export default function TicTacToe() {
     return () => clearTimeout(timeout);
   }, [nextMove, aiMove, players.ai, gameState]);
 
+  // check for winner when nextMove gets updated
   useEffect(() => {
     const boardWinner = board.getWinner(grid);
     const declareWinner = (winner: number) => {
@@ -141,6 +148,7 @@ export default function TicTacToe() {
     }
   }, [gameState, grid, nextMove]);
 
+  // start new game
   const choosePlayer = (option: number) => {
     setPlayers({ human: option, ai: switchPlayer(option) });
     setGameState(GAME_STATES.inProgress);
@@ -148,6 +156,7 @@ export default function TicTacToe() {
     setNextMove(PLAYER_X);
   };
 
+  // restart game
   const startNewGame = () => {
     setGameState(GAME_STATES.notStarted);
     setGrid(emptyGrid);
@@ -170,6 +179,7 @@ export default function TicTacToe() {
           humanMove={humanMove}
           nextMove={nextMove}
           players={players}
+          startNewGame={startNewGame}
         />
       );
     case GAME_STATES.over:

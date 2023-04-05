@@ -20,12 +20,12 @@ const GameSquare = ({ index, humanMove, value }: GameSquareProps) => {
   const MarkerO = () => (isOver ? <IconOOutline /> : <IconO />);
 
   return (
-    <div className="relative">
+    <div className="relative h-24 w-24 md:h-[140px] md:w-[140px]">
       <div
         onClick={() => humanMove(index)}
         onMouseEnter={() => setIsOver(true)}
         onMouseLeave={() => setIsOver(false)}
-        className="grid h-[140px] w-[140px] cursor-pointer place-content-center rounded-large bg-_darkNavySemi"
+        className="grid aspect-square w-full cursor-pointer place-content-center rounded-large bg-_darkNavySemi"
       >
         {isActive && (value === PLAYER_X ? <MarkerX /> : <MarkerO />)}
       </div>

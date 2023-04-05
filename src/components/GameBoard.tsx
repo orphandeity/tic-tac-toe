@@ -25,10 +25,10 @@ const GameBoard = ({
       </div>
 
       <div className="relative">
-        <div className="headingXs flex h-[52px] items-center justify-center rounded-small bg-_darkNavySemi uppercase text-_silver">
+        <div className="md:headingXs flex h-[52px] w-[96px] items-center justify-center rounded-small bg-_darkNavySemi text-sm font-bold uppercase text-_silver md:w-[140px]">
           {nextMove === PLAYER_X ? (
             <svg
-              className="-translate-x-2 scale-[35%]"
+              className="-translate-x-2 scale-[25%] md:scale-[35%]"
               width={64}
               height={64}
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const GameBoard = ({
             </svg>
           ) : (
             <svg
-              className="-translate-x-2 scale-[35%]"
+              className="-translate-x-2 scale-[25%] md:scale-[35%]"
               width={64}
               height={64}
               xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +59,15 @@ const GameBoard = ({
 
       <div className="flex items-center justify-end">
         <div className="relative">
-          <Button variant={"silver"} size={"sm"} onClick={restartGame}>
+          <Button
+            className="scale-75 md:scale-100"
+            variant={"silver"}
+            size={"sm"}
+            onClick={restartGame}
+          >
             <IconRestart />
           </Button>
-          <div className="absolute inset-0 -z-10 translate-y-1 rounded-small bg-[#6B8998]" />
+          <div className="absolute inset-0 -z-10 translate-y-1 scale-75 rounded-small bg-[#6B8998] md:scale-100" />
         </div>
       </div>
 
@@ -80,22 +85,30 @@ const GameBoard = ({
       })}
 
       <div className="flex flex-col items-center justify-center rounded-large bg-_lightBlue py-3">
-        <span className="body uppercase">
+        <span className="text-xs font-medium uppercase md:text-body md:tracking-body">
           X {players.human === PLAYER_X ? "(YOU)" : "(CPU)"}
         </span>
-        <span className="headingMd">0</span>
+        <span className="text-xl font-bold md:text-headingMd md:tracking-headingMd">
+          0
+        </span>
       </div>
 
       <div className="flex flex-col items-center justify-center rounded-large bg-_silver py-3">
-        <span className="body uppercase">TIES</span>
-        <span className="headingMd">0</span>
+        <span className="text-xs font-medium uppercase md:text-body md:tracking-body">
+          TIES
+        </span>
+        <span className="text-xl font-bold md:text-headingMd md:tracking-headingMd">
+          0
+        </span>
       </div>
 
       <div className="flex flex-col items-center justify-center rounded-large bg-_lightYellow py-3">
-        <span className="body uppercase">
+        <span className="text-xs font-medium uppercase md:text-body md:tracking-body">
           O {players.human === PLAYER_O ? "(YOU)" : "(CPU)"}
         </span>
-        <span className="headingMd">0</span>
+        <span className="text-xl font-bold md:text-headingMd md:tracking-headingMd">
+          0
+        </span>
       </div>
     </div>
   );

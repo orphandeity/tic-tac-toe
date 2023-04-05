@@ -23,14 +23,14 @@ const PlayerSelect = ({ choosePlayer, startNewGame }: PlayerSelectProps) => {
           <p id="select" className="headingXs uppercase text-_silver">
             Pick player 1's mark
           </p>
-          <fieldset className="flex w-[412px] rounded-small bg-_darkNavy p-2">
+          <fieldset className="flex w-[279px] rounded-small bg-_darkNavy p-2 md:w-[412px]">
             <button
               onClick={() => {
                 setPlayerO(false);
                 choosePlayer(PLAYER_X);
               }}
               className={clsx([
-                "grid w-[198px] place-content-center rounded-small",
+                "grid w-[131px] place-content-center rounded-small md:w-[198px]",
                 playerO
                   ? "bg-_darkNavy text-_silver hover:bg-_darkNavySemi"
                   : "bg-_silver text-_darkNavy",
@@ -55,7 +55,7 @@ const PlayerSelect = ({ choosePlayer, startNewGame }: PlayerSelectProps) => {
                 choosePlayer(PLAYER_O);
               }}
               className={clsx([
-                "grid w-[198px] place-content-center rounded-small",
+                "grid w-[131px] place-content-center rounded-small md:w-[198px]",
                 playerO
                   ? "bg-_silver text-_darkNavy"
                   : "bg-_darkNavy text-_silver hover:bg-_darkNavySemi",

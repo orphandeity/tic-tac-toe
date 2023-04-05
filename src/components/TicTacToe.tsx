@@ -148,16 +148,19 @@ export default function TicTacToe() {
     }
   }, [gameState, grid, nextMove]);
 
-  // start new game
+  // player select
   const choosePlayer = (option: number) => {
     setPlayers({ human: option, ai: switchPlayer(option) });
+  };
+
+  // start new game
+  const startNewGame = () => {
     setGameState(GAME_STATES.inProgress);
-    // set Player X to make the next move
     setNextMove(PLAYER_X);
   };
 
   // restart game
-  const startNewGame = () => {
+  const restartGame = () => {
     setGameState(GAME_STATES.notStarted);
     setGrid(emptyGrid);
   };
@@ -167,9 +170,9 @@ export default function TicTacToe() {
     default:
       return (
         <PlayerSelect
-          players={players}
-          setPlayers={setPlayers}
           choosePlayer={choosePlayer}
+          startNewGame={startNewGame}
+          players={players}
         />
       );
     case GAME_STATES.inProgress:
@@ -179,7 +182,7 @@ export default function TicTacToe() {
           humanMove={humanMove}
           nextMove={nextMove}
           players={players}
-          startNewGame={startNewGame}
+          restartGame={restartGame}
         />
       );
     case GAME_STATES.over:
@@ -187,7 +190,7 @@ export default function TicTacToe() {
         <div className="flex flex-col justify-center gap-2">
           <p className="text-xl font-bold">{winner}</p>
           <button
-            onClick={startNewGame}
+            onClick={restartGame}
             className="border border-black px-4 py-2"
           >
             New Game

@@ -7,7 +7,7 @@ interface GameBoardProps {
   humanMove: (index: number) => void;
   nextMove: number | null;
   players: Record<string, number | null>;
-  startNewGame: () => void;
+  restartGame: () => void;
 }
 
 const GameBoard = ({
@@ -15,7 +15,7 @@ const GameBoard = ({
   humanMove,
   nextMove,
   players,
-  startNewGame,
+  restartGame,
 }: GameBoardProps) => {
   return (
     <div className="grid grid-cols-3 gap-5">
@@ -31,7 +31,7 @@ const GameBoard = ({
       </div>
       <div className="flex items-center justify-end">
         <div className="relative">
-          <Button variant={"silver"} size={"sm"} onClick={startNewGame}>
+          <Button variant={"silver"} size={"sm"} onClick={restartGame}>
             <IconRestart />
           </Button>
           <div className="absolute inset-0 -z-10 translate-y-1 rounded-small bg-[#6B8998]" />

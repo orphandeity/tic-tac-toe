@@ -169,11 +169,7 @@ export default function TicTacToe() {
     case GAME_STATES.notStarted:
     default:
       return (
-        <PlayerSelect
-          choosePlayer={choosePlayer}
-          startNewGame={startNewGame}
-          players={players}
-        />
+        <PlayerSelect choosePlayer={choosePlayer} startNewGame={startNewGame} />
       );
     case GAME_STATES.inProgress:
       return (

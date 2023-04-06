@@ -2,6 +2,8 @@ import { PLAYER_O, PLAYER_X } from "../lib/constants";
 import { IconLogo, IconO, IconRestart, IconX } from "../lib/icons";
 import GameSquare from "./GameSquare";
 import { Button } from "./ui/Button";
+import X from "../assets/icon-x-silver.svg";
+import O from "../assets/icon-o-silver.svg";
 
 interface GameBoardProps {
   grid: SquareType[];
@@ -25,34 +27,13 @@ const GameBoard = ({
       </div>
 
       <div className="relative">
-        <div className="md:headingXs flex h-[52px] w-[96px] items-center justify-center rounded-small bg-_darkNavySemi text-sm font-bold uppercase text-_silver md:w-[140px]">
+        <div className="md:headingXs flex h-[52px] w-[96px] items-center justify-center gap-2 rounded-small bg-_darkNavySemi text-sm font-bold uppercase text-_silver md:w-[140px]">
           {nextMove === PLAYER_X ? (
-            <svg
-              className="-translate-x-2 scale-[25%] md:scale-[35%]"
-              width={64}
-              height={64}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z"
-                fill="currentColor"
-                fillRule="evenodd"
-              />
-            </svg>
+            <img src={X} alt="" width={24} height={24} />
           ) : (
-            <svg
-              className="-translate-x-2 scale-[25%] md:scale-[35%]"
-              width={64}
-              height={64}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z"
-                fill="currentColor"
-              />
-            </svg>
+            <img src={O} alt="" width={24} height={24} />
           )}
-          <span className="-translate-x-3">turn</span>
+          <span className="">turn</span>
         </div>
         <div className="absolute inset-0 -z-10 translate-y-1 rounded-small bg-[#10202A]" />
       </div>

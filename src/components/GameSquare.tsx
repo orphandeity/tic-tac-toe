@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { PLAYER_X } from "../lib/constants";
-import { IconX, IconO, IconXOutline, IconOOutline } from "../lib/icons";
+import { useWindowSize } from "../lib/useWindowSize";
+import X from "../assets/icon-x.svg";
+import XOutline from "../assets/icon-x-outline.svg";
+import O from "../assets/icon-o.svg";
+import OOutline from "../assets/icon-o-outline.svg";
 
 interface GameSquareProps {
   index: number;
@@ -15,9 +19,23 @@ const GameSquare = ({ index, humanMove, value }: GameSquareProps) => {
   // hover state
   const [isOver, setIsOver] = useState(false);
 
-  const MarkerX = () => (isOver ? <IconXOutline /> : <IconX />);
+  const { width } = useWindowSize();
 
-  const MarkerO = () => (isOver ? <IconOOutline /> : <IconO />);
+  const iconSize = width! <= 375 ? 32 : 64;
+
+  const MarkerX = () =>
+    isOver ? (
+      <img src={XOutline} alt="" width={iconSize} height={iconSize} />
+    ) : (
+      <img src={X} alt="" width={iconSize} height={iconSize} />
+    );
+
+  const MarkerO = () =>
+    isOver ? (
+      <img src={OOutline} alt="" width={iconSize} height={iconSize} />
+    ) : (
+      <img src={O} alt="" width={iconSize} height={iconSize} />
+    );
 
   return (
     <div className="relative h-24 w-24 md:h-[140px] md:w-[140px]">

@@ -5,6 +5,8 @@ import * as Switch from "@radix-ui/react-switch";
 import { Button } from "./ui/Button";
 import clsx from "clsx";
 import { IconLogo, IconO, IconX } from "../lib/icons";
+import X from "../assets/icon-x-silver.svg";
+import O from "../assets/icon-o.svg";
 
 interface PlayerSelectProps {
   choosePlayer: (option: number) => void;

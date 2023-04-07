@@ -13,6 +13,7 @@ import Board from "../lib/board";
 import { minimax } from "../lib/minimax";
 import PlayerSelect from "./PlayerSelect";
 import GameBoard from "./GameBoard";
+import GameOver from "./GameOver";
 
 // These values are declared outside of component
 // so they don't get re-created on each re-render
@@ -126,7 +127,7 @@ export default function TicTacToe() {
 
   // check for winner when nextMove gets updated
   useEffect(() => {
-    const boardWinner = board.getWinner(grid);
+    const { res: boardWinner, row } = board.getWinner(grid);
     const declareWinner = (winner: number) => {
       let winnerStr = "";
       switch (winner) {
@@ -182,16 +183,6 @@ export default function TicTacToe() {
         />
       );
     case GAME_STATES.over:
-      return (
-        <div className="flex flex-col justify-center gap-2">
-          <p className="text-xl font-bold">{winner}</p>
-          <button
-            onClick={restartGame}
-            className="border border-black px-4 py-2"
-          >
-            New Game
-          </button>
-        </div>
-      );
+      return <GameOver winner={winner} restartGame={restartGame} />;
   }
 }

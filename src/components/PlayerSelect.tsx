@@ -4,7 +4,7 @@ import { switchPlayer } from "../lib/utils";
 import * as Switch from "@radix-ui/react-switch";
 import { Button } from "./ui/Button";
 import clsx from "clsx";
-import { IconLogo, IconO, IconX } from "../lib/icons";
+import logo from "../assets/logo.svg";
 import X from "../assets/icon-x-silver.svg";
 import O from "../assets/icon-o.svg";
 
@@ -19,7 +19,7 @@ const PlayerSelect = ({ choosePlayer, startNewGame }: PlayerSelectProps) => {
 
   return (
     <div className="flex flex-col items-center gap-10">
-      <IconLogo />
+      <img src={logo} alt="" />
       <div className="relative">
         <div className="flex flex-col items-center gap-6 rounded-large bg-_darkNavySemi p-6">
           <p id="select" className="headingXs uppercase text-_silver">

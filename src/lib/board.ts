@@ -34,18 +34,20 @@ export default class Board {
       [2, 4, 6],
     ];
     let res: SquareType = null;
+    let row: number[] | null = null;
     winningCombos.forEach((el, i) => {
       if (
         grid[el[0]] !== null &&
         grid[el[0]] === grid[el[1]] &&
         grid[el[0]] === grid[el[2]]
       ) {
-        res = grid[el[0]];
+        res = grid[el[0]]; // winning player
+        row = el; // winning combo
       } else if (res === null && this.getEmptySquares(grid).length === 0) {
         res = DRAW;
       }
     });
-    return res;
+    return { res, row };
   };
 
   // Update square with player's value

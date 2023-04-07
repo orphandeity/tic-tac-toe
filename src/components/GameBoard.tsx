@@ -1,9 +1,12 @@
 import { PLAYER_O, PLAYER_X } from "../lib/constants";
-import { IconLogo, IconO, IconRestart, IconX } from "../lib/icons";
+import { IconLogo, IconRestart } from "../lib/icons";
 import GameSquare from "./GameSquare";
 import { Button } from "./ui/Button";
 import X from "../assets/icon-x-silver.svg";
 import O from "../assets/icon-o-silver.svg";
+import logo from "../assets/logo.svg";
+import restart from "../assets/icon-restart.svg";
+import { useWindowSize } from "../lib/useWindowSize";
 
 interface GameBoardProps {
   grid: SquareType[];
@@ -20,18 +23,22 @@ const GameBoard = ({
   players,
   restartGame,
 }: GameBoardProps) => {
+  const { width } = useWindowSize();
+
+  const iconSize = width! <= 375 ? 16 : 20;
+
   return (
     <div className="grid grid-cols-3 gap-5">
       <div className="flex items-center justify-start">
-        <IconLogo />
+        <img src={logo} alt="" />
       </div>
 
       <div className="relative">
         <div className="md:headingXs flex h-[52px] w-[96px] items-center justify-center gap-2 rounded-small bg-_darkNavySemi text-sm font-bold uppercase text-_silver md:w-[140px]">
           {nextMove === PLAYER_X ? (
-            <img src={X} alt="" width={24} height={24} />
+            <img src={X} alt="" width={iconSize} height={iconSize} />
           ) : (
-            <img src={O} alt="" width={24} height={24} />
+            <img src={O} alt="" width={iconSize} height={iconSize} />
           )}
           <span className="">turn</span>
         </div>
@@ -46,7 +53,7 @@ const GameBoard = ({
             size={"sm"}
             onClick={restartGame}
           >
-            <IconRestart />
+            <img src={restart} alt="" />
           </Button>
           <div className="absolute inset-0 -z-10 translate-y-1 scale-75 rounded-small bg-[#6B8998] md:scale-100" />
         </div>

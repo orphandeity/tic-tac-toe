@@ -21,7 +21,7 @@ const GameSquare = ({ index, humanMove, value }: GameSquareProps) => {
 
   const { width } = useWindowSize();
 
-  const iconSize = width! <= 375 ? 32 : 64;
+  const iconSize = width! <= 375 ? 40 : 64;
 
   const MarkerX = () =>
     isOver ? (

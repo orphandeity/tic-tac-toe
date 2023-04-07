@@ -13,7 +13,7 @@ export const minimax = (
   let maxScore = -1;
   let bestMove = null;
   // check if the game is over and return the score and move if so
-  const winner = board.getWinner();
+  const { res: winner, row } = board.getWinner();
   if (winner !== null) {
     return [SCORES[winner], 0];
   } else {
